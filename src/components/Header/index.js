@@ -56,9 +56,9 @@ function Header() {
                 user?.RoleId === '1'?<>
                   <Nav.Item style={{ marginLeft: '10px' }}>New</Nav.Item>
                   <Nav.Item style={{ marginLeft: '10px' }}>Top</Nav.Item>
-                  <Nav.Item style={{ marginLeft: '50px' }}>
+                  {/* <Nav.Item style={{ marginLeft: '50px' }}>
                   <Button onClick={() => setShowModalAdd(true)}  style={{ position: 'absolute', top: '15px' }} variant="success">Thêm bài viết</Button>
-                  </Nav.Item> 
+                  </Nav.Item>  */}
                 </>:''
               }    
             </Nav>
@@ -69,14 +69,14 @@ function Header() {
               {
                 user?
                   <NavDropdown title={user?.Name} id="collasible-nav-dropdown">
-                    {
+                    {/* {
                        user?.RoleId === '1'?
                        <NavDropdown.Item>
                       <Button style={{ width: '100%' }} type='button' variant="transparent" onClick={() => setShowModalAdd(true)}>
                         Thêm bài viết
                       </Button>
                     </NavDropdown.Item>:''
-                    }
+                    } */}
                     
                     <NavDropdown.Item>
                       <Button style={{ width: '100%' }} type='button' variant="transparent" onClick={() => handleLogOut()}>
