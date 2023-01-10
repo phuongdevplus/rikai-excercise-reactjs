@@ -10,7 +10,6 @@ export const AppProvider = ({ children }) => {
   const [allUser, setAllUser] = useState()
 
   const REACT_APP_URL_KEY = process.env.REACT_APP_URL_KEY
-
   async function getAllUser() {
     const urlGetAllUser = process.env.REACT_APP_URL_WEBSITE + '/authors'
     await axios.get(urlGetAllUser)
