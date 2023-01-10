@@ -56,6 +56,9 @@ function Header() {
                 user?.RoleId === '1'?<>
                   <Nav.Item style={{ marginLeft: '10px' }}>New</Nav.Item>
                   <Nav.Item style={{ marginLeft: '10px' }}>Top</Nav.Item>
+                  <Nav.Item style={{ marginLeft: '50px' }}>
+                  <Button onClick={() => setShowModalAdd(true)}  style={{ position: 'absolute', top: '15px' }} variant="success">Thêm bài viết</Button>
+                  </Nav.Item> 
                 </>:''
               }    
             </Nav>

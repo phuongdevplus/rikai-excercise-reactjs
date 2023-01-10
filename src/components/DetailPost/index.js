@@ -1,10 +1,8 @@
-import { Container } from './style';
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 function DetailPost(props) {
   const {showModalDetail, setShowModalDetail, dataDetail} = props.handle
   return (
-    <Container>
       <Modal size="lg" show={showModalDetail}  onHide={() => setShowModalDetail(false)}>
         <Modal.Header closeButton>
           <Modal.Title>{dataDetail?.Title}</Modal.Title>
@@ -21,7 +19,6 @@ function DetailPost(props) {
           </div>
         </Modal.Body>
       </Modal>
-    </Container>
   );
 }
 

@@ -118,24 +118,24 @@ function Register() {
             <Card className="shadow">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
-                  <h2 className="fw-bold mb-2 text-uppercase ">Register</h2>
-                  <p className=" mb-5">Please enter your email and password!</p>
+                  <h2 className="fw-bold mb-2 text-uppercase ">Đăng ký tài khoản</h2>
+                  <p className=" mb-5">Vui lòng nhập thông tin!</p>
                   <div className="mb-3">
                     <Form onSubmit={loginSubmit}>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
-                          Name
+                          Họ và tên
                         </Form.Label>
-                        <Form.Control type="text" placeholder="Enter email" onChange={(event) => setName(event.target.value)} />
+                        <Form.Control type="text" placeholder="Họ và tên" onChange={(event) => setName(event.target.value)} />
                         <small id="name" className="text-danger form-text">
                           {nameError}
                         </small>
                       </Form.Group>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
-                          Email address
+                          Email
                         </Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" onChange={(event) => setEmail(event.target.value)} />
+                        <Form.Control type="email" placeholder="Nhập email" onChange={(event) => setEmail(event.target.value)} />
                         <small id="emailHelp" className="text-danger form-text">
                           {emailError}
                         </small>
@@ -145,8 +145,8 @@ function Register() {
                         className="mb-3"
                         controlId="formBasicPassword"
                       >
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
+                        <Form.Label>Mật khẩu</Form.Label>
+                        <Form.Control type="password" placeholder="Nhập mật khẩu" onChange={(event) => setPassword(event.target.value)} />
                         <small id="passworderror" className="text-danger form-text">
                           {passwordError}
                         </small>
@@ -157,9 +157,9 @@ function Register() {
                         className="mb-3"
                         controlId="formBasicPassword1"
                       >
-                        <Form.Label>Confirm password
+                        <Form.Label>Nhập lại mật khẩu
                         </Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={(event) => setPasswordConfirm(event.target.value)} />
+                        <Form.Control type="password" placeholder="Nhập lại mật khẩu" onChange={(event) => setPasswordConfirm(event.target.value)} />
                         <small id="passworderror" className="text-danger form-text">
                           {passwordError}
                         </small>
@@ -167,15 +167,15 @@ function Register() {
                       </Form.Group>
                       <div className="d-grid">
                         <Button variant="primary" type="submit">
-                          Sign Up
+                          Đăng ký
                         </Button>
                       </div>
                     </Form>
                     <div className="mt-3">
                       <p className="mb-0  text-center">
-                        Do you already have an account?{" "}
+                        Bạn đã có tài khoản?{" "}
                         <Link to='/login' className="text-primary fw-bold">
-                          Sign In
+                          Đăng nhập
                         </Link>
                       </p>
                     </div>

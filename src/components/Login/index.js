@@ -75,15 +75,15 @@ function Login() {
             <Card className="shadow">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
-                  <h2 className="fw-bold mb-2 text-uppercase ">Login</h2>
-                  <p className=" mb-5">Please enter your email and password!</p>
+                  <h2 className="fw-bold mb-2 text-uppercase ">Đăng nhập</h2>
+                  <p className=" mb-5">Nhập email và mật khẩu!</p>
                   <div className="mb-3">
                     <Form onSubmit={loginSubmit}>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
-                          Email address
+                          Email
                         </Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" onChange={(event) => setEmail(event.target.value)} />
+                        <Form.Control type="email" placeholder="Nhập email" onChange={(event) => setEmail(event.target.value)} />
                         <small id="emailHelp" className="text-danger form-text">
                           {emailError}
                         </small>
@@ -93,8 +93,8 @@ function Login() {
                         className="mb-3"
                         controlId="formBasicPassword"
                       >
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
+                        <Form.Label>Mật khẩu</Form.Label>
+                        <Form.Control type="password" placeholder="Nhập password" onChange={(event) => setPassword(event.target.value)} />
                         <small id="passworderror" className="text-danger form-text">
                           {passwordError}
                         </small>
@@ -102,15 +102,15 @@ function Login() {
                       </Form.Group>
                       <div className="d-grid">
                         <Button variant="primary" type="submit">
-                          Login
+                          Đăng Nhập
                         </Button>
                       </div>
                     </Form>
                     <div className="mt-3">
                       <p className="mb-0  text-center">
-                        Don't have an account?{" "}
+                        Bạn chưa có tài khoản?{" "}
                         <Link to='/register' className="text-primary fw-bold">
-                          Sign Up
+                          Đăng Ký
                         </Link>
                       </p>
                     </div>

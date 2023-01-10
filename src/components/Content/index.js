@@ -40,7 +40,10 @@ function Content() {
   }
   return (
     <Row xs={1} md={4} className="g-4" >
-      <DetailPost handle={{ showModalDetail, setShowModalDetail, dataDetail }}></DetailPost>
+      {
+        showModalDetail?
+        <DetailPost handle={{ showModalDetail, setShowModalDetail, dataDetail }}></DetailPost>:''
+      }
       {data?.map((e, index) => (
         <Col onClick={() => handleShowDetail(e)} style={{ cursor: 'pointer' }} key={index}>
           <Card>
