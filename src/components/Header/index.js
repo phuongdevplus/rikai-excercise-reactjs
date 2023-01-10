@@ -49,7 +49,7 @@ function Header() {
           <Navbar.Brand href="/">
             <Image style={{ width: '40px', marginRight: '10px' }} src={logo}></Image>
           </Navbar.Brand>
-          <Navbar.Brand href="/">{user?.RoleId === '1'?'Rikai-News':'Rikai-Admin'}</Navbar.Brand>
+          <Navbar.Brand href="/">{user?.RoleId === '2'?'Rikai-Admin':'Rikai-News'}</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -85,14 +85,7 @@ function Header() {
                       </Button>
                     </NavDropdown.Item>
                   </NavDropdown> :
-                  <Nav>
-                    <Link style={{ color: '#000', }} to='/register'>
-                      <Button variant="success">Đăng ký</Button>
-                    </Link>
-                    <Link style={{ color: '#000', marginLeft: '10px' }} to='/login'>
-                      <Button variant="primary">Đăng nhập</Button>
-                    </Link>
-                  </Nav>
+                  ''
               }
             </Nav>
           </Navbar.Collapse>
