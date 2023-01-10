@@ -85,11 +85,11 @@ function Register() {
               const url = process.env.REACT_APP_URL_KEY
               const user = data?.data?.data
               localStorage.setItem(url, JSON.stringify(user));
-              if (user?.user?.RoleId === 2) {
+              if (user?.user?.RoleId === "2") {
                 setUser(user?.user)
                 navigate('/admin');
               }
-              if (user?.user?.RoleId === 1) {
+              if (user?.user?.RoleId === "1") {
                 setUser(user?.user)
                 navigate('/');
               }

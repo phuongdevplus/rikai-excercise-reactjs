@@ -40,6 +40,7 @@ function Header() {
       }
     });
   }
+  console.log(user)
   return (
     <ContainerHeader>
       <Navbar style={{ marginRight: '10px' }} collapseOnSelect expand="lg" bg="light">
