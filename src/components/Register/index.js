@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useContext } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AppContext } from "../../context/AppContext";
+
 function Register() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [nameError, setnameError] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [emailError, setemailError] = useState("");
-  const handleValidation = (event) => {
-  console.log(passwordConfirm, password)
+  const navigate = useNavigate();
+  const { setUser } = useContext(AppContext)
 
+  const handleValidation = (event) => {
     let formIsValid = true;
+    if (name?.length === 0) {
+      setnameError('Name Not Valid ')
+      return false;
+    }
     if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
       formIsValid = false;
       setemailError("Email Not Valid");
@@ -37,8 +48,6 @@ function Register() {
       );
       return false;
     } else {
-      console.log('co')
-
       setpasswordError("");
       formIsValid = true;
     }
@@ -49,6 +58,55 @@ function Register() {
   const loginSubmit = (e) => {
     e.preventDefault();
     handleValidation();
+    const check = handleValidation()
+    Swal.fire({
+      title: "Tạo tài khoản?",
+      icon: "question",
+      iconHtml: "?",
+      confirmButtonText: "Đồng ý",
+      cancelButtonText: "Hủy",
+      showCancelButton: true,
+      showCloseButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (check) {
+          const url = process.env.REACT_APP_URL_WEBSITE + '/register'
+          const formData = {
+            Name: name,
+            Email: email,
+            Password: password,
+          }
+          axios.post(url, formData)
+            .then((data) => {
+              Swal.fire({
+                title: 'Create account successfully',
+                timer: 2000,
+              })
+              const url = process.env.REACT_APP_URL_KEY
+              const user = data?.data?.data
+              localStorage.setItem(url, JSON.stringify(user));
+              if (user?.user?.RoleId === 2) {
+                setUser(user?.user)
+                navigate('/admin');
+              }
+              if (user?.user?.RoleId === 1) {
+                setUser(user?.user)
+                navigate('/');
+              }
+            }).catch((error) => {
+              Swal.fire({
+                title: error?.response?.data?.message,
+                timer: 2000,
+              })
+              setemailError(
+                error?.response?.data?.message
+              );
+            })
+        }
+      } else {
+        Swal.fire(" Hủy!", "", "error");
+      }
+    });
   };
 
   return (
@@ -66,6 +124,15 @@ function Register() {
                     <Form onSubmit={loginSubmit}>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
+                          Name
+                        </Form.Label>
+                        <Form.Control type="text" placeholder="Enter email" onChange={(event) => setName(event.target.value)} />
+                        <small id="name" className="text-danger form-text">
+                          {nameError}
+                        </small>
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label className="text-center">
                           Email address
                         </Form.Label>
                         <Form.Control type="email" placeholder="Enter email" onChange={(event) => setEmail(event.target.value)} />
@@ -79,7 +146,7 @@ function Register() {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password"  onChange={(event) => setPassword(event.target.value)}/>
+                        <Form.Control type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
                         <small id="passworderror" className="text-danger form-text">
                           {passwordError}
                         </small>
@@ -92,7 +159,7 @@ function Register() {
                       >
                         <Form.Label>Confirm password
                         </Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={(event) => setPasswordConfirm(event.target.value)}/>
+                        <Form.Control type="password" placeholder="Password" onChange={(event) => setPasswordConfirm(event.target.value)} />
                         <small id="passworderror" className="text-danger form-text">
                           {passwordError}
                         </small>

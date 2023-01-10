@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 function Login() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [emailError, setemailError] = useState("");
+  const navigate = useNavigate();
+  const { setUser } = useContext(AppContext)
 
   const handleValidation = (event) => {
     let formIsValid = true;
@@ -28,13 +32,38 @@ function Login() {
       setpasswordError("");
       formIsValid = true;
     }
-
     return formIsValid;
   };
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    handleValidation();
+    const check = handleValidation()
+    if (check) {
+      const url = process.env.REACT_APP_URL_WEBSITE + '/login'
+      const formData = {
+        Email: email,
+        Password: password,
+      }
+      axios.post(url, formData)
+        .then((data) => {
+          const url = process.env.REACT_APP_URL_KEY
+          const user = data?.data?.data
+          localStorage.setItem(url, JSON.stringify(user));
+          if (user?.user?.RoleId === "2") {
+            navigate('/admin');
+            setUser(user?.user)
+            
+          }
+          if (user?.user?.RoleId === "1") {
+            navigate('/');
+            setUser(user?.user)
+          }
+        }).catch((error) => {
+          setpasswordError(
+            error?.response?.data?.message
+          );
+        })
+    }
   };
 
   return (
@@ -65,11 +94,11 @@ function Login() {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
                         <small id="passworderror" className="text-danger form-text">
                           {passwordError}
                         </small>
-                        
+
                       </Form.Group>
                       <div className="d-grid">
                         <Button variant="primary" type="submit">

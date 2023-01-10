@@ -1,11 +1,18 @@
 import React from 'react';
-
-function Footer(props) {
+import {
+  Container,
+  FooterContainer,
+  H1
+} from './style'
+const Footer = (props) => {
   return (
-    <div>
-      dsad
-    </div>
+    <Container>
+      <FooterContainer>
+        <H1>
+          copy right © 2023 - Huynh Van Phuong
+        </H1>
+      </FooterContainer>
+    </Container>
   );
 }
-
-export default Footer;
+export default Footer
