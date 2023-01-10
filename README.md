@@ -1,4 +1,4 @@
-# rikai-excercise-nodejs
+# rikai-excercise
 
 
 chức năng:
